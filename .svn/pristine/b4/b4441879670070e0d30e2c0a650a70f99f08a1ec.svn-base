@@ -1,0 +1,53 @@
+package com.haoeyou.srv.adapter;
+
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.haoeyou.srv.R;
+import com.haoeyou.srv.bean.User;
+import com.haoeyou.srv.cache.UserCacheManager;
+import com.haoeyou.srv.common.Common;
+
+import butterknife.Bind;
+
+/**
+ * Created by Administrator on 2017/3/7.
+ */
+public class UserListHolder extends BaseHolder<User> {
+
+
+    @Bind(R.id.pic)
+    ImageView mPic;
+    @Bind(R.id.name)
+    TextView mName;
+    @Bind(R.id.tel)
+    TextView mTel;
+
+    public UserListHolder(View view) {
+        super(view);
+    }
+
+    @Override
+    public void setData(User mData) {
+        super.setData(mData);
+        mName.setText(mData.getNickname());
+        mTel.setText(mData.getTel());
+        Glide.with(mContext).load(Common.BASE_URL + "fileStorage/download?id=" + mData.getHeadFileID() + "&token=" + 
+                Common.TOKEN).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(com.hyphenate.easeui.R.drawable
+                .ease_default_avatar).into(mPic);
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(v, getPosition(), mData);
+            }
+        });
+    }
+}

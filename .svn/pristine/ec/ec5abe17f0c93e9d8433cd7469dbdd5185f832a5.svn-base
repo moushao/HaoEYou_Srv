@@ -1,0 +1,21 @@
+package com.haoeyou.srv.bean;
+
+/**
+ * Created by fan on 2016/8/9.
+ */
+public class ContactsBean implements Comparable<ContactsBean> {
+
+    public String name;
+    public String pinyin;
+
+    public ContactsBean(String name, String py) {
+        this.name = name;
+        this.pinyin = py;
+
+    }
+
+    @Override
+    public int compareTo(ContactsBean another) {
+        return this.pinyin.compareTo(another.pinyin);
+    }
+}

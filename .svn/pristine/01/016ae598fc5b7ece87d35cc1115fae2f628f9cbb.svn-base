@@ -1,0 +1,108 @@
+package com.haoeyou.srv.bean;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+/**
+ * Created by Mou on 2017/7/12.
+ */
+
+public class User implements Serializable {
+    private String account;
+    private String headFileID;
+    private String nickname;
+    private ArrayList<Patients> patients;
+    private String role;
+    private String tel;
+    private String waiter_account;
+    private String waiter_group;
+    private String waiter_name;
+
+    public User() {
+    }
+
+    public User(String account, String headFileID, String nickname, ArrayList<Patients> patients, String role, String
+            tel, String waiter_account, String waiter_group, String waiter_name) {
+        this.account = account;
+        this.headFileID = headFileID;
+        this.nickname = nickname;
+        this.patients = patients;
+        this.role = role;
+        this.tel = tel;
+        this.waiter_account = waiter_account;
+        this.waiter_group = waiter_group;
+        this.waiter_name = waiter_name;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getHeadFileID() {
+        return headFileID;
+    }
+
+    public void setHeadFileID(String headFileID) {
+        this.headFileID = headFileID;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public ArrayList<Patients> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(ArrayList<Patients> patients) {
+        this.patients = patients;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getWaiter_account() {
+        return waiter_account;
+    }
+
+    public void setWaiter_account(String waiter_account) {
+        this.waiter_account = waiter_account;
+    }
+
+    public String getWaiter_group() {
+        return waiter_group;
+    }
+
+    public void setWaiter_group(String waiter_group) {
+        this.waiter_group = waiter_group;
+    }
+
+    public String getWaiter_name() {
+        return waiter_name;
+    }
+
+    public void setWaiter_name(String waiter_name) {
+        this.waiter_name = waiter_name;
+    }
+}

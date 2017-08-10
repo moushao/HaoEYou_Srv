@@ -1,0 +1,44 @@
+package com.haoeyou.srv.bean;
+
+/**
+ * Created by Mou on 2017/7/13.
+ */
+
+public class DocInfoRequestBean {
+    private String account;
+    private String patient_id;
+    private String token;
+
+    public DocInfoRequestBean() {
+    }
+
+    public DocInfoRequestBean(String account, String token, String patient_id) {
+        this.account = account;
+        this.patient_id = patient_id;
+        this.token = token;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPatient_id() {
+        return patient_id;
+    }
+
+    public void setPatient_id(String patient_id) {
+        this.patient_id = patient_id;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+}

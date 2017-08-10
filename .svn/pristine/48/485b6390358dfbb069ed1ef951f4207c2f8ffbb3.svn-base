@@ -1,0 +1,39 @@
+package com.haoeyou.srv.mvp.presenter;
+
+import android.content.Context;
+import android.text.TextUtils;
+
+import com.haoeyou.srv.bean.User;
+import com.haoeyou.srv.bean.UserResponseBean;
+import com.haoeyou.srv.event.MVPCallBack;
+import com.haoeyou.srv.mvp.model.UserFragmentModel;
+import com.haoeyou.srv.mvp.view.UserFragmentView;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Mou on 2017/7/12.
+ */
+
+public class UserFragmentPresenter extends BasePresenter<UserFragmentView> {
+    UserFragmentModel mModel = new UserFragmentModel();
+
+    public void getUsersPage(Context context, String jsonBean) {
+        mModel.getUsersPage(context, jsonBean, new MVPCallBack<ArrayList<User>>() {
+            @Override
+            public void succeed(ArrayList<User> bean) {
+                if (mView != null) {
+                    mView.getUserPageSuccess(bean);
+                }
+            }
+
+            @Override
+            public void failed(String message) {
+                if (mView != null) {
+                    if (!TextUtils.isEmpty(message))
+                        mView.getUserPageFailed(message);
+                }
+            }
+        });
+    }
+}

@@ -1,0 +1,178 @@
+package com.haoeyou.srv.bean;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Mou on 2017/7/13.
+ */
+
+public class HealthInfoDoc {
+    private String age;
+    private String allergy_history;
+    private String blood_type;
+    private String borthday;
+    private String city;
+    private String emergency_tel;
+    private String genetic_history;
+    private String height;
+    private String is_drink;
+    private String is_excercise;
+    private String is_smoke;
+    private String name;
+    private String sex;
+    private String tel;
+    private String weight;
+    private ArrayList<String> department_list;
+
+    public HealthInfoDoc() {
+    }
+
+    public HealthInfoDoc(String age, String allergy_history, String blood_type, String borthday, String city, String 
+            emergency_tel, String genetic_history, String height, String is_drink, String is_excercise, String 
+            is_smoke, String name, String sex, String tel, String weight, ArrayList<String> department_list) {
+        this.age = age;
+        this.allergy_history = allergy_history;
+        this.blood_type = blood_type;
+        this.borthday = borthday;
+        this.city = city;
+        this.emergency_tel = emergency_tel;
+        this.genetic_history = genetic_history;
+        this.height = height;
+        this.is_drink = is_drink;
+        this.is_excercise = is_excercise;
+        this.is_smoke = is_smoke;
+        this.name = name;
+        this.sex = sex;
+        this.tel = tel;
+        this.weight = weight;
+        this.department_list = department_list;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getAllergy_history() {
+        return allergy_history;
+    }
+
+    public void setAllergy_history(String allergy_history) {
+        this.allergy_history = allergy_history;
+    }
+
+    public String getBlood_type() {
+        return blood_type;
+    }
+
+    public void setBlood_type(String blood_type) {
+        this.blood_type = blood_type;
+    }
+
+    public String getBorthday() {
+        return borthday;
+    }
+
+    public void setBorthday(String borthday) {
+        this.borthday = borthday;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getEmergency_tel() {
+        return emergency_tel;
+    }
+
+    public void setEmergency_tel(String emergency_tel) {
+        this.emergency_tel = emergency_tel;
+    }
+
+    public String getGenetic_history() {
+        return genetic_history;
+    }
+
+    public void setGenetic_history(String genetic_history) {
+        this.genetic_history = genetic_history;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getIs_drink() {
+        return is_drink;
+    }
+
+    public void setIs_drink(String is_drink) {
+        this.is_drink = is_drink;
+    }
+
+    public String getIs_excercise() {
+        return is_excercise;
+    }
+
+    public void setIs_excercise(String is_excercise) {
+        this.is_excercise = is_excercise;
+    }
+
+    public String getIs_smoke() {
+        return is_smoke;
+    }
+
+    public void setIs_smoke(String is_smoke) {
+        this.is_smoke = is_smoke;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public ArrayList<String> getDepartment_list() {
+        return department_list;
+    }
+
+    public void setDepartment_list(ArrayList<String> department_list) {
+        this.department_list = department_list;
+    }
+}

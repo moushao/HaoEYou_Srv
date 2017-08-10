@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="E:\AS_CODE\HaoEYou_Srv\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="E:\AS_CODE\HaoEYou_Srv\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_edba39960e436eef62e5b3b3a08c8cc26b70dcdb\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\AS_CODE\HaoEYou_Srv\statusbarlibrary\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c83fdcf2595130243682134eb8cbb8c1081f8ad9">
+        <dex dex="E:\AS_CODE\HaoEYou_Srv\app\build\intermediates\pre-dexed\debug\classes_e241a8d6ab0ac7d6d19f04249bc3ee6c6393a6da.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\AS_CODE\HaoEYou_Srv\okhttputils\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="ed7606bc4eb620cd66ae589ed5e5d3c9942772dd">
+        <dex dex="E:\AS_CODE\HaoEYou_Srv\app\build\intermediates\pre-dexed\debug\classes_55d1a659961856ab12dab29e8ab62aa31590e449.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\AS_CODE\HaoEYou_Srv\bottomtabbar\build\intermediates\bundles\default\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="ebb7f78797145b1a8bd4002573fa9bc72a1e6aea">
+        <dex dex="E:\AS_CODE\HaoEYou_Srv\app\build\intermediates\pre-dexed\debug\classes_ba1e13a8f3baabbf9f53e7a17d73b90d109fd246.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AS_CODE\HaoEYou_Srv\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bbcf8ce0d01114f60edcc80dfca6d71b53c26692">
+        <dex dex="E:\AS_CODE\HaoEYou_Srv\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_d1f8b1a1d7862daab8b0ee884731211fe0f904b9\classes.dex" />
+    </item>
+
+</items>

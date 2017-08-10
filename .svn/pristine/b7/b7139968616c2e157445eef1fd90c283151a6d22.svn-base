@@ -1,0 +1,43 @@
+package com.haoeyou.srv.mvp.model;
+
+import android.content.Context;
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.haoeyou.srv.bean.User;
+import com.haoeyou.srv.bean.UserResponseBean;
+import com.haoeyou.srv.event.MVPCallBack;
+import com.haoeyou.srv.network.DataCallback;
+import com.haoeyou.srv.network.NetWorking;
+import com.haoeyou.srv.utils.JsonFormat;
+import com.haoeyou.srv.utils.LogUtil;
+
+import java.util.ArrayList;
+
+import okhttp3.Call;
+
+/**
+ * Created by Mou on 2017/7/12.
+ */
+
+public class UserFragmentModel {
+    public void getUsersPage(Context context, String jsonBean, final MVPCallBack<ArrayList<User>> mBack) {
+        NetWorking.requestNetData("backend/getUsersPage", jsonBean, new DataCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                mBack.failed("");
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                LogUtil.e("获取客户列表", JsonFormat.format(response));
+                UserResponseBean bean = new Gson().fromJson(response, UserResponseBean.class);
+                if ("1".equals(bean.getErrorCode())) {
+                    mBack.succeed(bean.getUsers());
+                } else {
+                    mBack.failed(bean.getErrorMsg());
+                }
+            }
+        });
+    }
+}

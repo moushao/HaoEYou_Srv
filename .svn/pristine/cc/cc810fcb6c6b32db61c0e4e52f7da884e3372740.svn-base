@@ -1,0 +1,76 @@
+package com.haoeyou.srv.activity;
+
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.haoeyou.srv.R;
+import com.haoeyou.srv.base.BaseActivity;
+import com.haoeyou.srv.fragment.MainFragment;
+import com.haoeyou.srv.fragment.SecondFragment;
+import com.haoeyou.srv.mvp.presenter.BasePresenter;
+import com.haoeyou.srv.mvp.presenter.MainActivityPresenter;
+import com.haoeyou.srv.mvp.view.MainActivityView;
+import com.hjm.bottomtabbar.BottomTabBar;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+/**
+ * 类名: {@link MainActivity}
+ * <br/> 功能描述: 主功能界面
+ * <br/> 作者: MouTao
+ * <br/> 时间: 2017/5/16
+ * <br/> 最后修改者:
+ * <br/> 最后修改内容:
+ */
+public class MainActivity extends BaseActivity implements MainActivityView {
+    @Bind(R.id.title_back)
+    ImageView mTitleBack;
+    @Bind(R.id.title_tv)
+    TextView mTitleTv;
+    @Bind(R.id.bottom_tab_bar)
+    BottomTabBar mBottomTabBar;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    private void initButtomBar() {
+        mBottomTabBar.init(getSupportFragmentManager()).addTabItem("首页", R.drawable.home_page_select, R.drawable
+                .home_page_unselect, MainFragment.class).addTabItem("第二页", R.drawable.home_page_select, R.drawable
+                .home_page_unselect, SecondFragment.class);
+    }
+
+    @Override
+    protected void initInjector() {
+
+    }
+
+    @Override
+    protected void initEventAndData() {
+        initButtomBar();
+    }
+
+    @Override
+    public BasePresenter getPresenter() {
+        return new MainActivityPresenter();
+    }
+
+    @Override
+    public void showLoadProgressDialog(String str) {
+
+    }
+
+    @Override
+    public void disDialog() {
+
+    }
+
+    @Override
+    public void showToast(String message) {
+
+    }
+
+}

@@ -1,0 +1,5 @@
+package com.haoeyou.srv.mvp.model;
+
+
+public class MainModel implements MainModelImp {
+}

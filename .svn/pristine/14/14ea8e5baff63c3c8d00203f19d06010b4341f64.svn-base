@@ -1,0 +1,168 @@
+package com.haoeyou.srv.activity;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.google.gson.Gson;
+import com.haoeyou.srv.R;
+import com.haoeyou.srv.base.BaseActivity;
+import com.haoeyou.srv.bean.LoginBean;
+import com.haoeyou.srv.common.Common;
+import com.haoeyou.srv.mvp.presenter.BasePresenter;
+import com.haoeyou.srv.mvp.presenter.LoginPresenter;
+import com.haoeyou.srv.mvp.view.LoginView;
+import com.haoeyou.srv.utils.PhoneFormatCheckUtils;
+import com.haoeyou.srv.utils.SharedPreferencesHelper;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class LoginActivity extends BaseActivity implements LoginView {
+    public static final String TAG = "LoginActivity";
+    @Bind(R.id.head_pic)
+    ImageView mHeadPic;
+    @Bind(R.id.account)
+    EditText mAccount;
+    @Bind(R.id.password)
+    EditText mPassword;
+    @Bind(R.id.normal_btn)
+    Button mNormalBtn;
+    @Bind(R.id.button_layout)
+    LinearLayout mButtonLayout;
+    private Context mContext;
+
+    private Boolean telFlag = false;
+    private Boolean passFlag = false;
+
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initInjector() {
+        mContext = this;
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initEventAndData() {
+        SetTranslanteBar();
+        setOnChangeListener();
+    }
+
+    @Override
+    public BasePresenter getPresenter() {
+        return new LoginPresenter();
+    }
+
+
+    @OnClick({R.id.head_pic, R.id.normal_btn})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.head_pic:
+                break;
+            case R.id.normal_btn:
+                String jsonBean = new Gson().toJson(new LoginBean(mAccount.getText().toString(), mPassword.getText()
+                        .toString()));
+                ((LoginPresenter) mPresenter).login(mContext, mAccount.getText().toString(), jsonBean);
+                break;
+        }
+    }
+
+    private void setOnChangeListener() {
+        mAccount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (2 < mAccount.getText().toString().length()) {
+                    telFlag = true;
+                    checkIsCanRegister();
+                } else {
+                    telFlag = false;
+                }
+            }
+        });
+        mPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (2 <= mPassword.getText().toString().trim().length()) {
+                    passFlag = true;
+                    checkIsCanRegister();
+                } else {
+                    passFlag = false;
+                }
+            }
+        });
+    }
+
+    private void checkIsCanRegister() {
+        if (telFlag && passFlag) {
+            mNormalBtn.setBackgroundResource(R.drawable.selector_save);
+            mNormalBtn.setClickable(true);
+        } else {
+            mNormalBtn.setBackgroundResource(R.drawable.gray_background);
+            mNormalBtn.setClickable(false);
+        }
+    }
+
+    @Override
+    public void showLoadProgressDialog(String str) {
+
+    }
+
+    @Override
+    public void disDialog() {
+
+    }
+
+    @Override
+    public void showToast(String message) {
+
+    }
+
+    @Override
+    public void loginSuccess() {
+        Common.IS_FIRST_LOAD = false;
+        Common.ACCOUNT = mAccount.getText().toString();
+        SharedPreferencesHelper.putString(mContext, "ACCOUNT", Common.ACCOUNT);
+        MainActivity.startAction(mContext,LoginActivity.TAG);
+        
+    }
+
+    @Override
+    public void loginFailed(String message) {
+        showBaseMessageDialog(message);
+    }
+}

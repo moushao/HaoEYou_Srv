@@ -1,0 +1,32 @@
+package com.haoeyou.srv.utils;
+
+import android.view.View;
+
+import com.haoeyou.srv.adapter.BaseHolder;
+
+/**
+ * Created by Administrator on 2017/3/7.
+ */
+public class UserListHolder extends BaseHolder<String> {
+
+
+    public UserListHolder(View view) {
+        super(view);
+    }
+
+    @Override
+    public void setData(String mData) {
+        super.setData(mData);
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(v, getPosition(), mData);
+            }
+        });
+    }
+}

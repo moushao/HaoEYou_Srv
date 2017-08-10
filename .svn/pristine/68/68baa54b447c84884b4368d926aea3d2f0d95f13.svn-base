@@ -1,0 +1,56 @@
+package com.haoeyou.srv.bean;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Mou on 2017/7/12.
+ */
+
+public class UserResponseBean {
+    private String errorCode;
+    private String errorMsg;
+    private String total;
+    private ArrayList<User> users;
+
+    public UserResponseBean() {
+    }
+
+    public UserResponseBean(String errorCode, String errorMsg, String total, ArrayList<User> users) {
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+        this.total = total;
+        this.users = users;
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+}

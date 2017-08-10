@@ -1,0 +1,40 @@
+package com.haoeyou.srv.mvp.presenter;
+
+import android.content.Context;
+import android.text.TextUtils;
+
+import com.haoeyou.srv.bean.DocInfoResponseBean;
+import com.haoeyou.srv.event.MVPCallBack;
+import com.haoeyou.srv.mvp.model.DocModel;
+import com.haoeyou.srv.mvp.view.DocView;
+
+
+/**
+ * Created by Mou on 2017/6/9.
+ */
+
+public class DocPresenter extends BasePresenter<DocView> {
+    DocModel mModel = new DocModel();
+
+    public void getDocInfo(Context context, String jsonBean) {
+        mView.showLoadProgressDialog("");
+        mModel.getDocInfo(context, jsonBean, new MVPCallBack<DocInfoResponseBean>() {
+            @Override
+            public void succeed(DocInfoResponseBean mData) {
+                if (mView != null) {
+                    mView.disDialog();
+                    mView.setInfo(mData);
+                }
+            }
+
+            @Override
+            public void failed(String message) {
+                if (mView != null) {
+                    mView.disDialog();
+                    if (!TextUtils.isEmpty(message))
+                        mView.getInfoFaield(message);
+                }
+            }
+        });
+    }
+}

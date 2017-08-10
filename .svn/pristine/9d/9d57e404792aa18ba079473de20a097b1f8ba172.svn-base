@@ -1,0 +1,17 @@
+package com.haoeyou.srv.mvp.presenter;
+
+
+import com.haoeyou.srv.mvp.model.MainModel;
+import com.haoeyou.srv.mvp.view.MainView;
+
+/**
+ * 类名: {@link MainPresenter}
+ * <br/> 功能描述:{@link MainActivity}的解析层
+ * <br/> 作者: MouTao
+ * <br/> 时间: 2017/5/16
+ * <br/> 最后修改者:
+ * <br/> 最后修改内容:
+ */
+public class MainPresenter extends BasePresenter<MainView> {
+    MainModel mModel = new MainModel();
+}

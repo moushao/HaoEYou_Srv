@@ -1,0 +1,146 @@
+package com.haoeyou.srv.activity;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.haoeyou.srv.R;
+import com.haoeyou.srv.adapter.base.DataCompareFragmentAdapter;
+import com.haoeyou.srv.base.BaseActivity;
+import com.haoeyou.srv.fragment.MainFragment;
+import com.haoeyou.srv.fragment.SecondFragment;
+import com.haoeyou.srv.mvp.presenter.BasePresenter;
+import com.haoeyou.srv.mvp.presenter.MainPresenter;
+import com.haoeyou.srv.mvp.view.MainView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class MainActivity extends BaseActivity implements MainView {
+    public static final String TAG = "MainActivity";
+    @Bind(R.id.pager)
+    ViewPager mPager;
+    @Bind(R.id.manager_icon)
+    ImageView mManagerIcon;
+    @Bind(R.id.manager_tv)
+    TextView mManagerTv;
+    @Bind(R.id.manager_layout)
+    LinearLayout mManagerLayout;
+    @Bind(R.id.message_icon)
+    ImageView mMessageIcon;
+    @Bind(R.id.message_tv)
+    TextView mMessageTv;
+    @Bind(R.id.message_layout)
+    LinearLayout mMessageLayout;
+    private Context mContext;
+    List<Fragment> fragmentList;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initInjector() {
+        mContext = this;
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void initEventAndData() {
+        onTintStatusBar();
+        SetStatusBarColor(Color.parseColor("#426388"));
+        
+        initFragmentUI();
+    }
+
+    @OnClick({R.id.manager_layout, R.id.message_layout})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.manager_layout:
+                mPager.setCurrentItem(0);
+                changeTabState(0);
+                break;
+            case R.id.message_layout:
+                mPager.setCurrentItem(1);
+                changeTabState(1);
+                break;
+        }
+    }
+
+    private void initFragmentUI() {
+        fragmentList = new ArrayList<Fragment>();
+        fragmentList.add(new MainFragment());
+        fragmentList.add(new SecondFragment());
+        DataCompareFragmentAdapter adapter = new DataCompareFragmentAdapter(getSupportFragmentManager(), new 
+                String[]{"管理", "消息"}, fragmentList);
+        mPager.setAdapter(adapter);
+        mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                changeTabState(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        }); 
+    }
+
+    private void changeTabState(int i) {
+      
+        switch (i) {
+            case 0:
+                mManagerIcon.setImageResource(R.drawable.icon_manager);
+                mManagerTv.setTextColor(Color.parseColor("#3eb0ff"));
+                mMessageIcon.setImageResource(R.drawable.icon_un_message);
+                mMessageTv.setTextColor(Color.parseColor("#000000"));
+                break;
+            case 1:
+                mManagerIcon.setImageResource(R.drawable.icon_un_manager);
+                mManagerTv.setTextColor(Color.parseColor("#000000"));
+                mMessageIcon.setImageResource(R.drawable.icon_message);
+                mMessageTv.setTextColor(Color.parseColor("#3eb0ff"));
+                break;
+        }
+    }
+
+
+    @Override
+    public BasePresenter getPresenter() {
+        return new MainPresenter();
+    }
+
+    @Override
+    public void showLoadProgressDialog(String str) {
+
+    }
+
+    @Override
+    public void disDialog() {
+
+    }
+
+    @Override
+    public void showToast(String message) {
+
+    }
+
+
+}

@@ -1,0 +1,37 @@
+package com.haoeyou.srv.fragment;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import com.haoeyou.srv.R;
+import com.haoeyou.srv.base.BaseFragment;
+import com.haoeyou.srv.mvp.presenter.BasePresenter;
+
+public class MainFragment extends BaseFragment {
+
+
+    @Override
+    public BasePresenter getPresenter() {
+        return null;
+    }
+
+    @Override
+    protected int getlayoutId() {
+        return R.layout.activity_main_fragment;
+    }
+
+    @Override
+    protected void initInjector() {
+
+    }
+
+    @Override
+    protected void initEventAndData() {
+
+    }
+
+    @Override
+    protected void lazyLoadData() {
+
+    }
+}

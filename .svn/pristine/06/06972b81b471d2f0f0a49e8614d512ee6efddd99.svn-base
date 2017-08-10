@@ -1,0 +1,201 @@
+package com.haoeyou.srv.fragment;
+
+import android.content.Context;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.haoeyou.srv.R;
+import com.haoeyou.srv.activity.DoctorActivity;
+import com.haoeyou.srv.adapter.BaseRecyclerAdapter;
+import com.haoeyou.srv.adapter.ContactsAdapter;
+import com.haoeyou.srv.base.BaseFragment;
+import com.haoeyou.srv.bean.ContactsBean;
+import com.haoeyou.srv.event.ItemListener;
+import com.haoeyou.srv.mvp.presenter.BasePresenter;
+import com.haoeyou.srv.utils.DepartListHolder;
+import com.haoeyou.srv.adapter.DoctorListHolder;
+import com.haoeyou.srv.utils.UserListHolder;
+import com.haoeyou.srv.widget.QuickIndexBar;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+import ca.barrenechea.widget.recyclerview.decoration.DividerDecoration;
+import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderDecoration;
+
+public class DoctorFragment extends BaseFragment {
+    public final static String TAG = "DoctorFragment";
+    private Context mContext;
+    @Bind(R.id.item_name)
+    TextView mItem;
+    @Bind(R.id.select_icon)
+    ImageView mSelectIcon;
+    @Bind(R.id.select_layout)
+    FrameLayout mSelectLayout;
+    @Bind(R.id.doctor_recycle)
+    RecyclerView mDoctorRecycle;
+    @Bind(R.id.department_recycle)
+    RecyclerView mDepartmentRecycle;
+    @Bind(R.id.nothing)
+    View mNothing;
+    @Bind(R.id.department_select)
+    LinearLayout mDepartmentLayout;
+    private BaseRecyclerAdapter mDoctorAdapter;
+    private BaseRecyclerAdapter mDepartmentAdapter;
+
+    @Bind(R.id.qib)
+    QuickIndexBar QIBar;
+
+    private List<ContactsBean> namelist = new ArrayList<>();
+    private LinearLayoutManager manager;
+
+    @Override
+    public BasePresenter getPresenter() {
+        return null;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_doctor;
+    }
+
+    @Override
+    protected void initInjector() {
+        mContext = getActivity();
+    }
+
+    @Override
+    protected void initEventAndData() {
+        initRecyclerView();
+    }
+
+
+    @Override
+    protected void lazyLoadData() {
+
+    }
+
+    @OnClick({R.id.select_layout, R.id.nothing})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.select_layout:
+                mDepartmentLayout.setVisibility(View.VISIBLE);
+                break;
+            case R.id.nothing:
+                mDepartmentLayout.setVisibility(View.INVISIBLE);
+                break;
+        }
+    }
+
+    private void initRecyclerView() {
+        LinearLayoutManager mgrDepart = new LinearLayoutManager(mContext);
+        mgrDepart.setOrientation(LinearLayoutManager.VERTICAL);
+        mDepartmentRecycle.setLayoutManager(mgrDepart);
+        mDepartmentRecycle.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+        setDoctorAdapter();
+        setDepartmentAdapter();
+    }
+
+    public void setDoctorAdapter() {
+
+        ContactsBean bean;
+        for (int i = 0; i < 10; i++) {
+            bean = new ContactsBean("Bda", "B");
+            namelist.add(bean);
+        }
+        for (int i = 0; i < 10; i++) {
+            bean = new ContactsBean("Cda", "C");
+            namelist.add(bean);
+        }
+        for (int i = 0; i < 10; i++) {
+            bean = new ContactsBean("Ada", "A");
+            namelist.add(bean);
+        }
+        //对集合进行排序
+        Collections.sort(namelist);
+        //条目间的间隔线
+        DividerDecoration divider = new DividerDecoration.Builder(mContext).setHeight(R.dimen.default_divider_height)
+                .setPadding(R.dimen.default_divider_padding).setColorResource(R.color.tou_ming).build();
+
+        manager = new LinearLayoutManager(mContext);
+
+        mDoctorRecycle.setHasFixedSize(true);
+        mDoctorRecycle.setLayoutManager(manager);
+        mDoctorRecycle.addItemDecoration(divider);
+
+        final ContactsAdapter adapter = new ContactsAdapter(mContext, namelist, new ItemListener() {
+            @Override
+            public void onItemClick(View view, int postion, Object mdata) {
+                DoctorActivity.startAction(mContext, DoctorFragment.TAG);
+            }
+        });
+
+        //设置悬浮索引
+        StickyHeaderDecoration decor = new StickyHeaderDecoration(adapter);
+
+        mDoctorRecycle.setAdapter(adapter);
+        mDoctorRecycle.addItemDecoration(decor, 1);
+
+
+        //侧拉索引改变监听
+        QIBar.setOnLetterChangeListener(new QuickIndexBar.OnLetterChangeListener() {
+            @Override
+            public void onLetterChange(String letter) {
+
+                for (int i = 0; i < namelist.size(); i++) {
+
+                    if (letter.equals(namelist.get(i).pinyin.charAt(0) + "")) {
+
+                        int position = adapter.getPositionForSection(namelist.get(i).pinyin.charAt(0));
+                        if (position != -1) {
+                            //滑动到指定位置
+                            manager.scrollToPositionWithOffset(position, 0);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onReset() {
+
+            }
+        });
+    }
+
+
+    public void setDepartmentAdapter() {
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("1");
+        }
+        if (mDepartmentRecycle == null)
+            return;
+        if (mDepartmentAdapter == null) {
+            mDepartmentAdapter = new BaseRecyclerAdapter(list, R.layout.adapter_user_item, UserListHolder.class, new 
+                    ItemListener<String>() {
+                @Override
+                public void onItemClick(View view, int position, String mData) {
+                    mItem.setText("Ronald McGee M.D");
+                    mDepartmentLayout.setVisibility(View.INVISIBLE);
+                }
+            });
+            mDepartmentRecycle.setAdapter(mDepartmentAdapter);
+        } else {
+            if ((mDepartmentAdapter.getItem(0) == null) && (list.size() == 0))
+                return;
+            if ((mDepartmentAdapter.getItem(0) == null) || (list.size() == 0))
+                mDepartmentAdapter.setmDatas(list);
+        }
+    }
+
+}

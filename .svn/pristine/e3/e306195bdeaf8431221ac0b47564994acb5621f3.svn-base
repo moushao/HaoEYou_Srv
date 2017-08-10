@@ -1,0 +1,15 @@
+package com.haoeyou.srv.mvp.view;
+
+import com.haoeyou.srv.bean.User;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Mou on 2017/7/12.
+ */
+
+public interface UserFragmentView extends BaseView {
+    void getUserPageSuccess(ArrayList<User> bean);
+
+    void getUserPageFailed(String message);
+}

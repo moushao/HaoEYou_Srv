@@ -1,0 +1,77 @@
+package com.haoeyou.srv.bean;
+
+import java.util.List;
+
+/**
+ * Created by Mou on 2017/7/13.
+ */
+
+public class DocInfoResponseBean {
+    private String errorCode;
+    private String errorMsg;
+    private HealthInfoDoc health_doc;
+    private List<CaseReport> case_report_list;
+    private List<DiagnosisReport> diagnosis_report_list;
+    private List<MedicalHistory> medical_history_list;
+
+    public DocInfoResponseBean() {
+    }
+
+    public DocInfoResponseBean(String errorCode, String errorMsg, HealthInfoDoc health_doc, List<CaseReport> 
+            case_report_list, List<DiagnosisReport> diagnosis_report_list, List<MedicalHistory> medical_history_list) {
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+        this.health_doc = health_doc;
+        this.case_report_list = case_report_list;
+        this.diagnosis_report_list = diagnosis_report_list;
+        this.medical_history_list = medical_history_list;
+    }
+
+    public List<CaseReport> getCase_report_list() {
+        return case_report_list;
+    }
+
+    public void setCase_report_list(List<CaseReport> case_report_list) {
+        this.case_report_list = case_report_list;
+    }
+
+    public List<DiagnosisReport> getDiagnosis_report_list() {
+        return diagnosis_report_list;
+    }
+
+    public void setDiagnosis_report_list(List<DiagnosisReport> diagnosis_report_list) {
+        this.diagnosis_report_list = diagnosis_report_list;
+    }
+
+    public List<MedicalHistory> getMedical_history_list() {
+        return medical_history_list;
+    }
+
+    public void setMedical_history_list(List<MedicalHistory> medical_history_list) {
+        this.medical_history_list = medical_history_list;
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public HealthInfoDoc getHealth_doc() {
+        return health_doc;
+    }
+
+    public void setHealth_doc(HealthInfoDoc health_doc) {
+        this.health_doc = health_doc;
+    }
+}

@@ -1,0 +1,64 @@
+package com.haoeyou.srv.bean;
+
+/**
+ * Created by Mou on 2017/6/1.
+ */
+
+public class LoginResponse {
+    private String errorCode;
+    private String errorMsg;
+    private String token;
+    private String role;
+    private String durationSeconds;
+
+    public LoginResponse() {
+    }
+
+    public LoginResponse(String errorCode, String errorMsg, String token, String role, String durationSeconds) {
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+        this.token = token;
+        this.role = role;
+        this.durationSeconds = durationSeconds;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getDurationSeconds() {
+        return durationSeconds;
+    }
+
+    public void setDurationSeconds(String durationSeconds) {
+        this.durationSeconds = durationSeconds;
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+}

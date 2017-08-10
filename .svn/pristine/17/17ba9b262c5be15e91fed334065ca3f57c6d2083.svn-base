@@ -1,0 +1,34 @@
+package com.haoeyou.srv.mvp.model;
+
+import android.content.Context;
+import android.util.Log;
+
+import com.haoeyou.srv.event.MVPCallBack;
+import com.haoeyou.srv.network.DataCallback;
+import com.haoeyou.srv.network.NetWorking;
+
+import okhttp3.Call;
+
+/**
+ * 类名: {@link LoginModel}
+ * <br/> 功能描述:登录界面的Model层
+ * <br/> 作者: MouTao
+ * <br/> 时间: 2017/6/5
+ */
+public class LoginModel implements LoginModelImp {
+    @Override
+    public void login(Context mContext, String jsonBean, final MVPCallBack<String> mBack) {
+        NetWorking.requestNetData("account/accountLogin", jsonBean, new DataCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.e("account/accountLogin", e.getMessage());
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                Log.e("account/accountLogin", response);
+
+            }
+        });
+    }
+}

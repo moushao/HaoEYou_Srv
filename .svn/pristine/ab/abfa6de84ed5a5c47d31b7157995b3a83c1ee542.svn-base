@@ -1,0 +1,40 @@
+package com.haoeyou.srv.mvp.presenter;
+
+
+import android.content.Context;
+import android.util.Log;
+
+import com.haoeyou.srv.activity.MainActivity;
+import com.haoeyou.srv.event.MVPCallBack;
+import com.haoeyou.srv.mvp.model.LoginModel;
+import com.haoeyou.srv.mvp.model.MainActivityModel;
+import com.haoeyou.srv.mvp.view.LoginView;
+import com.haoeyou.srv.mvp.view.MainActivityView;
+
+/**
+ * 类名: {@link LoginPresenter}
+ * <br/> 功能描述:{@link com.haoeyou.srv.activity.LoginActivity}的解析层
+ * <br/> 作者: MouTao
+ * <br/> 时间: 2017/5/16
+ */
+public class LoginPresenter extends BasePresenter<LoginView> {
+    LoginModel mModel = new LoginModel();
+    public void login(Context mContext, String jsonBean) {
+        mModel.login(mContext, jsonBean, new MVPCallBack<String>() {
+            @Override
+            public void succeed(String bean) {
+                Log.e("Json", bean.toString());
+                if (mView != null) {
+                    mView.loginSuccess();
+                }
+            }
+
+            @Override
+            public void failed(String message) {
+                if (mView != null) {
+                    mView.loginFailed(message);
+                }
+            }
+        });
+    }
+}

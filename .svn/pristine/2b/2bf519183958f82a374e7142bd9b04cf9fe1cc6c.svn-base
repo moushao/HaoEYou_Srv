@@ -1,0 +1,164 @@
+package com.haoeyou.srv.adapter;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.haoeyou.srv.R;
+import com.haoeyou.srv.activity.DoctorActivity;
+import com.haoeyou.srv.bean.ContactsBean;
+import com.haoeyou.srv.event.ItemListener;
+import com.haoeyou.srv.fragment.DoctorFragment;
+import com.haoeyou.srv.utils.ToastUtils;
+
+import java.util.List;
+
+import butterknife.Bind;
+import ca.barrenechea.widget.recyclerview.decoration.StickyHeaderAdapter;
+
+/**
+ * Created by fan on 2016/8/9.
+ */
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> implements 
+        StickyHeaderAdapter<ContactsAdapter.HeaderHolder> {
+
+    private Context mContext;
+    private LayoutInflater mInflater;
+    private List<ContactsBean> nameList;
+
+    private char lastChar = '\u0000';
+    private int DisplayIndex = 0;
+    private ItemListener mListener;
+
+
+    public ContactsAdapter(Context context, List<ContactsBean> nameList, ItemListener listener) {
+        mInflater = LayoutInflater.from(context);
+        this.mContext = context;
+        this.nameList = nameList;
+        this.mListener = listener;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        final View view = mInflater.inflate(R.layout.adapter_doctor_item, viewGroup, false);
+        return new ViewHolder(view);
+    }
+
+
+    //条目文本填充
+    @Override
+    public void onBindViewHolder(final ViewHolder viewHolder, final int i) {
+        viewHolder.position = i;
+        viewHolder.mName.setText(nameList.get(i).name);
+        String path = "http://haoeyouwebsite.oss-cn-shanghai.aliyuncs.com/201701/13/hakim.jpg";
+        Glide.with(mContext).load(path)/*.centerCrop()*/.diskCacheStrategy(DiskCacheStrategy.RESULT)/*
+        .override(60, 
+        80)*/.into(viewHolder.mPic);
+
+        viewHolder.mLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onItemClick(null, i, null);
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return nameList.size();
+    }
+
+    public long getHeaderId(int position) {
+
+        //这里面的是如果当前position与之前position重复（内部判断）  则不显示悬浮标题栏  如果不一样则显示标题栏
+
+        char ch = nameList.get(position).pinyin.charAt(0);
+
+        if (lastChar == '\u0000') {
+            lastChar = ch;
+            return DisplayIndex;
+        } else {
+
+            if (lastChar == ch) {
+
+                return DisplayIndex;
+
+            } else {
+
+                lastChar = ch;
+                DisplayIndex++;
+                return DisplayIndex;
+            }
+
+        }
+
+    }
+
+    public HeaderHolder onCreateHeaderViewHolder(ViewGroup parent) {
+        final View view = mInflater.inflate(R.layout.item_contacts_head, parent, false);
+        return new HeaderHolder(view);
+    }
+
+    //悬浮标题栏填充文本
+    public void onBindHeaderViewHolder(HeaderHolder viewHolder, int position) {
+        viewHolder.header.setText(nameList.get(position).pinyin.charAt(0) + "");
+    }
+
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView mName;
+        public TextView mDepartment;
+        public TextView mDegree;
+        public TextView mArea;
+        public ImageView mPic;
+        public LinearLayout mLayout;
+        private int position;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            mLayout = (LinearLayout) itemView.findViewById(R.id.doctor);
+            mName = (TextView) itemView.findViewById(R.id.name);
+            mDepartment = (TextView) itemView.findViewById(R.id.department);
+            mDegree = (TextView) itemView.findViewById(R.id.degree);
+            mArea = (TextView) itemView.findViewById(R.id.area);
+            mPic = (ImageView) itemView.findViewById(R.id.pic);
+        }
+    }
+
+    class HeaderHolder extends RecyclerView.ViewHolder {
+        public TextView header;
+
+        public HeaderHolder(View itemView) {
+            super(itemView);
+            header = (TextView) itemView;
+        }
+    }
+
+    /**
+     * 获得指定首字母的位置
+     *
+     * @param ch
+     * @return
+     */
+    public int getPositionForSection(char ch) {
+
+        for (int i = 0; i < getItemCount(); i++) {
+            char firstChar = nameList.get(i).pinyin.charAt(0);
+            if (firstChar == ch) {
+                return i;
+            }
+        }
+        return -1;
+
+    }
+
+}

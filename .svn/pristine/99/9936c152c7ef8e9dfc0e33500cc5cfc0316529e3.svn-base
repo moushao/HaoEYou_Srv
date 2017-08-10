@@ -1,0 +1,39 @@
+package com.haoeyou.srv.bean;
+
+import java.io.Serializable;
+
+/**
+ * Created by fan on 2016/8/9.
+ */
+public class ContactsBean implements Comparable<ContactsBean>, Serializable {
+
+    public String name;
+    public String pinyin;
+
+    public ContactsBean(String name, String py) {
+        this.name = name;
+        this.pinyin = py;
+
+    }
+
+    @Override
+    public int compareTo(ContactsBean another) {
+        return this.pinyin.compareTo(another.pinyin);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPinyin() {
+        return pinyin;
+    }
+
+    public void setPinyin(String pinyin) {
+        this.pinyin = pinyin;
+    }
+}

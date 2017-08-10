@@ -1,0 +1,84 @@
+package com.haoeyou.srv.fragment;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.haoeyou.srv.R;
+import com.haoeyou.srv.adapter.base.DataCompareFragmentAdapter;
+import com.haoeyou.srv.base.BaseFragment;
+import com.haoeyou.srv.mvp.presenter.BasePresenter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class MainFragment extends BaseFragment {
+    List<Fragment> fragmentList;
+    public static final String TAG = "MainFragment";
+    private String[] tabTitles = new String[]{"用户", "医生", "服务"};
+    private Context mContext;
+
+    @Bind(R.id.title_back)
+    ImageView mTitleBack;
+    @Bind(R.id.title_tv)
+    TextView mTitleTv;
+    @Bind(R.id.more_tv)
+    TextView mMoreTv;
+    @Bind(R.id.more_icon)
+    ImageView mMoreIcon;
+    @Bind(R.id.tab_layout)
+    TabLayout mTabLayout;
+    @Bind(R.id.vp_tab_pager)
+    ViewPager mVpTabPager;
+
+    @Override
+    public BasePresenter getPresenter() {
+        return null;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main_fragment;
+    }
+
+    @Override
+    protected void initInjector() {
+        mContext = getActivity();
+    }
+
+    @Override
+    protected void initEventAndData() {
+        initTabLayout();
+    }
+
+    private void initTabLayout() {
+        fragmentList = new ArrayList<Fragment>();
+        fragmentList.add(new UserFragment());
+        fragmentList.add(new DoctorFragment());
+        fragmentList.add(new ServiceFragment());
+        // 把TabLayout和ViewPager关联起来
+        DataCompareFragmentAdapter adapter = new DataCompareFragmentAdapter(getChildFragmentManager(), tabTitles, 
+                fragmentList);
+        mVpTabPager.setAdapter(adapter);
+
+        //        mPageVp.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        //        // 把TabLayout和ViewPager关联起来
+        mTabLayout.setupWithViewPager(mVpTabPager);
+    }
+
+    @Override
+    protected void lazyLoadData() {
+
+    }
+
+}

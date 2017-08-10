@@ -1,0 +1,14 @@
+package com.haoeyou.srv.mvp.view;
+
+
+import com.haoeyou.srv.bean.DocInfoResponseBean;
+
+/**
+ * Created by Mou on 2017/6/9.
+ */
+
+public interface DocView extends BaseView {
+    void setInfo(DocInfoResponseBean bean);
+
+    void getInfoFaield(String message);
+}

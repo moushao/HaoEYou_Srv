@@ -1,0 +1,51 @@
+package com.haoeyou.srv.mvp.presenter;
+
+import android.content.Context;
+
+
+import com.haoeyou.srv.bean.DepartmentResponseBean;
+import com.haoeyou.srv.bean.Doctors;
+import com.haoeyou.srv.event.MVPCallBack;
+import com.haoeyou.srv.mvp.model.DcotorModel;
+import com.haoeyou.srv.mvp.view.DcotorFragmentView;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Mou on 2017/6/1.
+ */
+
+public class DcotorPresenter extends BasePresenter<DcotorFragmentView> {
+    DcotorModel mModel = new DcotorModel();
+
+    public void getDoctorsPage(Context mContext, String jsonBean) {
+        mModel.getDoctorsPage(mContext, jsonBean, new MVPCallBack<ArrayList<Doctors>>() {
+            @Override
+            public void succeed(ArrayList<Doctors> mData) {
+                if (mView != null) {
+                    mView.getDoctorPageSuccess(mData);
+                }
+            }
+
+            @Override
+            public void failed(String message) {
+                mView.getDoctorPageFailed();
+            }
+        });
+    }
+
+    public void getStandardDepartments(Context mContext) {
+        mModel.getStandardDepartments(mContext, new MVPCallBack<ArrayList<DepartmentResponseBean>>() {
+            @Override
+            public void succeed(ArrayList<DepartmentResponseBean> mData) {
+                if (mView != null) {
+                    mView.getStandardDepartmentsSuccess(mData);
+                }
+            }
+
+            @Override
+            public void failed(String message) {
+            }
+        });
+    }
+}

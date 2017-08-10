@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="150px"
+              android:gravity="center">
+
+    <ImageView
+        android:id="@+id/pic"
+        android:layout_width="100px"
+        android:layout_marginLeft="20px"
+        android:layout_height="100px"
+        android:src="@drawable/pic_default_head"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24px"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="Ronald McGee M.D"
+            android:textColor="@color/black"
+            android:textSize="34px"/>
+
+        <TextView
+            android:id="@+id/tel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16px"
+            android:text="18613009128"
+            android:drawablePadding="8px"
+            android:drawableLeft="@drawable/icon_user_tel"
+            android:textColor="#7a8699"
+            android:textSize="26px"/>
+
+
+    </LinearLayout>
+</LinearLayout>

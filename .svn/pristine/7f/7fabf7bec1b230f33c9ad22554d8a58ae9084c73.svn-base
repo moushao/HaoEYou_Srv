@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.haoeyou.srv"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- <uses-permission android:name="android.permission.INSTALL_PACKAGES"/> -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"/>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 照相头权限 -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <!-- 读写文件权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <!-- 开机权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- 悬浮的权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!-- 获取当前Activity -->
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_PROFILE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!-- 环信集成 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+
+    <!-- <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/> -->
+    <application
+        android:name=".common.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/BaseAppTheme">
+        <!--阿里云第三代sopFix热修复-->
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24537224-1"/>
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="b89cc7774acb959738eef1a8cf9cf137"/>
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCCNW4t1aoNvQhkM74hKhw5eMXU+kDMVHbIuFL1PCMycMIa7o/MiIJmTZJu0NDVkXf0ru+2mAv2CrLDn/018+sqpPkuj6zTiaIRuTVfr+HQWZoDycDStxpgAimmnqhKOa+tehN0jrPh6XxFMTIt3vzeHFhSIBHCf2hNCMdM5iu2OHm5EUv0eM9StdTEvmWVshM2ILHDQlbbxbyNgQ8x0hNjZ8TVk3nt5J2ogzv+GI9conf3pHTfC0TrtOpqXqJQqEBsye/NMJePOvnmrQAlNJqG9GQ4p6g3atmIR4FsGTq5cZKquHnUlgfnhVWOfcxGW0YrE4mRqaPcfF7cQkXe3WfLAgMBAAECggEAc4/iMpHAdKMB8JSvuRV7qVJUGnrkybRpHCnjjr2J63mB/I8gVwIM4akVPn7b6cBKu4ILRH5bl0nVcKPtAlZysA1tDnL7i19K1PoQsdUS0GzFsXj9Rsa1hOJGfxeu+vmJvqhq3fbNFcK4xVwtUeLngGWdyX2m5X1YX45b/BcIUpclVtnBhgadFfOXkAC6UCKZgH0yFpp7ji4F0b1hFLa82kecwt2N3mLIDnj2hd7UwusCTLFhqZxItm6mt9ss13rff7fL+17A8kFYhHpTQ8MxCXuEUCULkmB6p+kOKy/1qGlpBKPf6BV8iFnDxxvS7XpsVg8UD32TiilxcYTHtgrjwQKBgQD9guGLA+TmlYjnlMCQTZzYhXl8o3iD6LdSLvjZ+aUa+eomv4E7BMPY//iol9kFIse5ErjnD4ykeepVKe4qmxEbCI2vBNM66rB4Xg6Esuq//4kiSUtTdb9eOiey+R+hvn5eom1S8wYn0HV222RQrtoc5HNklkoBUDkGfsn1WPeE4QKBgQCDfKsIGtn0c+HtM9QCxzNrT33zrHoYInAXyywUzJv/rtJnSKvbEEvk8eoypZ/9tSp6aWd7wIxTk9jGxcj/AqdOwImcc56OeVG7BzxN3dGAcNaH2ceXYZFeZ5q/MFfz5m5U03hPmPK2RjmHA3xzGtZCue/j/YBArY8LXXJt1PbWKwKBgGAx3auGWsE0VLKrOzaGfNGcNDEbRounLoi80ijEFeZaloMFf+AJOteIqa4vkGXmgKq1c/wZZmCy8jxGoN0B4kfDwx96UTy1+ShzaEbqLTGVoU+lSDPvJiJ3JsE+zsXtJr56G8mx9c/9xdTIAxSqhJEaDr9IV+SPsFPKoI+8po+BAoGAM7uEKz8tS9GgLUx7+M/ZOjpfatUMgJxkD+h/InvSUMm+vKZJ/3ms8pn/tAeYKCD0Yo9ACN+cFnIQEzzUNQkdPI3iVqzi0FmJP5W8M0K339oFfhPARJ49rLAEoX5qzGp4NGWza1XZAMAmeCl1+G+xpzUy3jfqEwh2RFly4SWuLFsCgYAFJCDhfsuVpRdXpoy3OcU70lz/yCz0NOj0F1dSpVuKkIiY+95NLdM8TFwLu6+A7vlct9qoQJDS+pxUzPLVGyEs8tcFVcjdUF6MdSjWmsjSjKDzTBy4xAVXSiATeNpYPOQnMqOKEQZ11+l9y4Pi0xjpEYW1fyI3WatX46uFb5fOUg=="/>
+
+        <!-- 环信核心功能配置(开始) -->
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1122170613178461#haoeyou"/>
+        <!-- 声明SDK所需的service SDK核心功能 -->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true"/>
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>
+        </receiver>
+        <!-- 环信核心功能配置(结束) -->
+
+        <activity android:name=".activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.MainActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN"/> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".activity.DoctorActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
+        <activity
+            android:name=".activity.UserArchivesActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
+        <activity
+            android:name=".activity.UserInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
+        <activity
+            android:name=".activity.ReportActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
+        <activity
+            android:name=".activity.HistoryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
+        <activity
+            android:name=".activity.HistoryDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
+        <activity
+            android:name=".activity.ChatActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
+        <!-- 显示下载大图页面 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <!-- 地图 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <!-- 下载文件 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowNormalFileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+        <!-- choose video -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowVideoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".activity.CardActivity">
+        </activity>
+    </application>
+
+</manifest>

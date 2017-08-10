@@ -1,0 +1,40 @@
+package com.haoeyou.srv.mvp.model;
+
+import android.content.Context;
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.haoeyou.srv.bean.DocInfoResponseBean;
+import com.haoeyou.srv.event.MVPCallBack;
+import com.haoeyou.srv.network.DataCallback;
+import com.haoeyou.srv.network.NetWorking;
+
+import okhttp3.Call;
+
+/**
+ * Created by Mou on 2017/6/9.
+ */
+
+public class DocModel {
+
+    public void getDocInfo(Context context, String jsonBean, final MVPCallBack<DocInfoResponseBean> mBack) {
+        NetWorking.requestNetData("backend/getPatientDoc", jsonBean, new DataCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.e("获取健康信息", e.getMessage());
+                mBack.failed("");
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                Log.e("获取健康信息", response);
+                DocInfoResponseBean responseBean = new Gson().fromJson(response, DocInfoResponseBean.class);
+                if ("1".equals(responseBean.getErrorCode())) {
+                    mBack.succeed(responseBean);
+                } else {
+                    mBack.failed(responseBean.getErrorMsg());
+                }
+            }
+        });
+    }
+}
